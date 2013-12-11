@@ -7,8 +7,11 @@ import java.util.ArrayList;
 public class CommandSet {
 	private PlayerCommandAnalyzer analyzer;
 	
+	// Was having trouble with this loading more than once. Wanted to do a null check to speed load times
 	public CommandSet() {
-		analyzer = new PlayerCommandAnalyzer();
+		if (analyzer == null) {
+			analyzer = new PlayerCommandAnalyzer();
+		}
 	}
 	
 	
@@ -66,6 +69,7 @@ public class CommandSet {
 			return particles;
 		}
 		
+		// Allows the scene to get the tagged sentence from the tagger.
 		public String getTags(String cmd) throws IOException{
 			return analyzer.toTagged(cmd);
 		}

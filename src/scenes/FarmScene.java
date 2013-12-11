@@ -32,6 +32,7 @@ public class FarmScene extends BasicScene {
 		SmokeAnimation = new Animation(SmokeSheet, 750);
 	}
 	
+	// Updates the animation is allow animation timing to be consistent even if framerate changes.
 	public void updateAnimations(int delta) {
 		FireAnimation.update(delta);
 		SmokeAnimation.update(delta);
@@ -79,15 +80,17 @@ public class FarmScene extends BasicScene {
 	// Executes a command for the scene and returns action or error text
 	public String executeCommand(String cmd) {
 		String actionText = "";
-		if (cmd.equalsIgnoreCase("quit") || (cmd.equalsIgnoreCase("exit"))) {
-			return "Exiting...";
-		}
+		
 		try {
+			// Prints out the tagged sentence into the console for testing different sentences and tags.
 			System.out.println(getCommands().getTags(cmd));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		// Returns all nouns, verbs, adverbs, and particles from the command.
+		// Will try running the first verb with the first noun.
+		// Particles and adverbs are there for certain verbs to allow combination of words to work.
 		ArrayList<String> nouns = getCommands().getNouns(cmd);
 		ArrayList<String> verbs = getCommands().getVerbs(cmd);
 		ArrayList<String> adverbs = getCommands().getAdverbs(cmd);
@@ -96,10 +99,12 @@ public class FarmScene extends BasicScene {
 		
 		if (!verbs.isEmpty()) {
 			verb = verbs.get(0);
+			if (verb.equalsIgnoreCase("quit")) { return super.executeCommand(cmd); } // lowercase quit is considered a verb and would request a noun
 		} else {
-			return "Error: Need a verb if you want to do anything.";
+			return super.executeCommand(cmd);
 		}
 		
+		// Complete list of working verbs.
 		switch (verb) {
 		case "light":
 		case "fire":
@@ -132,6 +137,7 @@ public class FarmScene extends BasicScene {
 			break;
 		}
 		
+		// Checks if the first noun is valid for the scene, then checks if the verb is valid for the noun.
 		if  (!nouns.isEmpty()) {
 			switch (nouns.get(0)) {
 			case "fire":
@@ -187,12 +193,15 @@ public class FarmScene extends BasicScene {
 			return "Error: What do you want to " + verbs.get(0) + "?";
 		}
 		
+		// If the scene fails to find an action for the given command in the scene, checks if there is a generic action for the scene.
+		// Examples: Inventory, Exit
 		if (actionText == "") {
 			actionText = super.executeCommand(cmd);
 		}
 		return actionText;
 	}
 	
+	// Tries starting the fire and checks the current state of fire.
 	public String startFire() {
 		String actionText = "";
 		switch(FireStatus) {
@@ -211,6 +220,7 @@ public class FarmScene extends BasicScene {
 		return actionText;
 	}
 	
+	// Put outs the fire if lit, outputs other text if it's not.
 	public String extinguishFire() {
 		String actionText = "";
 		switch(FireStatus) {
@@ -228,7 +238,8 @@ public class FarmScene extends BasicScene {
 		
 		return actionText;
 	}
-	
+
+	// Removes the ash and dust from the fire reseting the campfire.
 	public String clearAshes() {
 		String actionText = "";
 		switch(FireStatus) {

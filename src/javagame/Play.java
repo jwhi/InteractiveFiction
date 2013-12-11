@@ -30,7 +30,7 @@ public class Play extends BasicGameState {
 	private Color CursorColor;
 	private TrueTypeFont CursorFont;
 	private TextField tf;
-	private boolean TextFieldFocus = true;
+	private boolean ShowFPS = true;
 	private boolean AllowESC = true;
 	
 	public Play(int state) {
@@ -145,17 +145,18 @@ public class Play extends BasicGameState {
 		
 		// The text field would no longer be focus if the window was clicked or switched to another window
 		// Wasn't able to click in the text field to focus, this allows the user to always be able to enter text.
-		tf.setFocus(TextFieldFocus);
+		tf.setFocus(true);
 		
 		Input input = gc.getInput();
 		
 		// This will allow the animation to play for the proper duration even if framerate changes
 		scene.updateAnimations(delta);
 		
-		// Escape key enables and disables focus on the text box
+		// Escape key shows and hides the fps counter
 		if (input.isKeyDown(Input.KEY_ESCAPE) && AllowESC) {
-//			sbg.enterState(0); Would enter the game state with the id 0, currently this Play state
-			TextFieldFocus = !TextFieldFocus;
+//			sbg.enterState(0); Would enter the game state with the id 0, currently the loading
+			ShowFPS = !ShowFPS;
+			gc.setShowFPS(ShowFPS);
 			AllowESC = false;
 		}
 		
@@ -196,6 +197,6 @@ public class Play extends BasicGameState {
 
 	
 	public int getID() {
-		return 0;
+		return 1;
 	}
 }

@@ -34,6 +34,9 @@ public class BasicScene {
 		if (cmd.equalsIgnoreCase("exit") || cmd.equalsIgnoreCase("quit")) {
 			return "Exiting...";
 		}
+		if (cmd.equalsIgnoreCase("Inventory") || cmd.equalsIgnoreCase("I")) {
+			return "You are currently carrying nothing.";
+		}
 		return cmd + " is not a valid command.";
 	}
 	
