@@ -1,6 +1,6 @@
 Testing the foundation of a text adventure written in Java with Slick2D and LWJGL.
 
-Using the Stanford Log-linear Part-Of-Speech Tagger to identify the verb and noun of sentence for commands. Not yet implemented.
+Using the Stanford Log-linear Part-Of-Speech Tagger to identify the verb and noun of sentence for commands.
 
 Using edited images from various authors on OpenGameArt.org, primarily pixel32 and jerom.
 
