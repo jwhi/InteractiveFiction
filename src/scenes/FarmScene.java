@@ -91,10 +91,11 @@ public class FarmScene extends BasicScene {
 		// Returns all nouns, verbs, adverbs, and particles from the command.
 		// Will try running the first verb with the first noun.
 		// Particles and adverbs are there for certain verbs to allow combination of words to work.
-		ArrayList<String> nouns = getCommands().getNouns(cmd);
-		ArrayList<String> verbs = getCommands().getVerbs(cmd);
-		ArrayList<String> adverbs = getCommands().getAdverbs(cmd);
-		ArrayList<String> particles = getCommands().getParticles(cmd);
+		getCommands().analyzeCommand(cmd);
+		ArrayList<String> nouns = getCommands().getNouns();
+		ArrayList<String> verbs = getCommands().getVerbs();
+		ArrayList<String> adverbs = getCommands().getAdverbs();
+		ArrayList<String> particles = getCommands().getParticles();
 		String verb = "";
 		
 		if (!verbs.isEmpty()) {
