@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scene>
+	<title><!-- Title of the scene, displayed at the top of the game screen to help player know their current location --></title>
+	<description><!-- Describe the scene here. Will be displayed when the player enters the scene and describes the constants within the scene --></description>
+	<visuals><!-- Location or name of scene file. If this isn't included, so scene will be displayed and game text will take up the whole width of the game scene --></visuals>
+	<music><!-- Ambient music to be played when the game triggers the music periodically --></music>
+	<sounds><!-- Ambient sounds to be played while in the scene --></sounds>
+	<actor><!-- NPCs within the scene -->
+		<name><!-- Name of NPC. Will grab constants from another file. Constants are physical descriptions, consistent actions available with NPC, etc --></name>
+		<description><!-- Describe the NPCs current position and behavior within the scene --></description>
+		<action><!-- Additional actions that are specific with the scene for the actor. Interactions available to the player --></action>
+		<dialog><!-- Dialog options available for the NPC and the player additional to the defaults of the actor --></dialog>
+	</actor>
+	<object><!-- Interactive object within the scene that can be manipulated or used by the player. Tag name will be replaced by actual object type. Example: book, food, etc. -->
+		<name><!-- Name of the object --></name>
+		<description><!-- Object will have a default description, this will overwrite the default with a custom one. --></description>
+	</object>
+	<book><!-- Example of how an object would be in a scene -->
+		<name><!-- Title of the book --></name>
+		<author><!-- Author of the book --></author>
+		<contents>
+			<page><!-- Create a new page for pages in the book. Will be able to be read through a special screen in game that allows the reading of books easily. -->
+				<text><!-- Text to be displayed on the page --></text>
+				<image><!-- Image to be displayed on the text. Will be displayed in relation to text tags. Example: Above, below, between --></image>
+			</page>
+		</contents>
+	</book>
+</scene>
