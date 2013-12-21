@@ -11,6 +11,7 @@ public class Loading extends BasicGameState {
 	private Image loadingImage;
 	private int step = 0;
 	private int play = 1;
+	private int book = 2;
 	
 	public Loading(int state) {
 		
@@ -36,7 +37,9 @@ public class Loading extends BasicGameState {
 			break;
 		case 1:
 			sbg.addState(new Play(play));
+			sbg.addState(new BookView(book));
 			sbg.getState(play).init(gc, sbg);
+			sbg.getState(book).init(gc, sbg);
 			break;
 		case 2:
 			sbg.enterState(play);
