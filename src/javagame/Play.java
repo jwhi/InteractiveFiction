@@ -24,12 +24,9 @@ public class Play extends BasicGameState {
 	private BasicScene scene;
 	private String ActionText;
 	private boolean AllowClick = true;
-	
-	private Color FontColor;
-	private TrueTypeFont GameFont;
-	private Color CursorColor;
-	private TrueTypeFont CursorFont;
+	private TextHandler textHandle;
 	private TextField tf;
+	private TrueTypeFont CursorFont;
 	private boolean ShowFPS = true;
 	private boolean AllowESC = true;
 	
@@ -57,17 +54,12 @@ public class Play extends BasicGameState {
 		TextBorderColor = Color.gray;
 		scene = new FarmScene();
 		ActionText = "";
-		FontColor = Color.white;
 		
-		// Courier 12 is 7 pixels wide
-		// Use the Courier font for the game text. A nice monospaced font for now.
-		java.awt.Font awtFont = new java.awt.Font("Courier", java.awt.Font.PLAIN, 12);
-		GameFont = new TrueTypeFont((java.awt.Font) awtFont, false);
-		
-		// Color and style of the font that is used for entering text.
-		CursorColor = Color.white;
-		awtFont = new java.awt.Font("Courier", java.awt.Font.BOLD, 12);
+		java.awt.Font awtFont = new java.awt.Font("Courier", java.awt.Font.BOLD, 12);
 		CursorFont = new TrueTypeFont((java.awt.Font) awtFont, false);
+		
+		textHandle= new TextHandler();
+		
 		
 		// Text field for entering text
 		tf = new TextField(gc, CursorFont, 76, 348, 420, 24, new ComponentListener() {
@@ -170,6 +162,7 @@ public class Play extends BasicGameState {
 		if (Mouse.isButtonDown(0) && AllowClick)
 		{
 			scene.sceneCliked(Mouse.getX(), Mouse.getY());
+			textHandle.textClicked(Mouse.getX(), gc.getHeight() - Mouse.getY());
 			AllowClick = false;
 		}
 		if (!Mouse.isButtonDown(0)) {
@@ -178,20 +171,15 @@ public class Play extends BasicGameState {
 	}
 	
 	public void drawGameText(Graphics g) throws SlickException {
-		g.setColor(FontColor);
-		// Want to read these descriptions from a file in the future.
-		GameFont.drawString(62, 60, "This takes up the width since the backgrounds fit 60 chars!!");
-		GameFont.drawString(62, 72, "Hello, World!");
-		GameFont.drawString(62, 84, "There is a cabin here with a old farmer.");
-		GameFont.drawString(62, 96, "There is a pile of wood next to the cabin ready to be lit.");
+		textHandle.drawStrings(scene.getDescription());
 		
 		// After the description for the scene, writes the text used for invalid commands as well as the exiting... text
 		if (ActionText.length() > 0) {
-			GameFont.drawString(62, 300, ActionText);
+			textHandle.getGameFont().drawString(62, 300, ActionText, textHandle.getFontColor());
 		}
 		
+		g.setColor(textHandle.getFontColor());
 		// Draws the text that is displayed before the text box
-		g.setColor(CursorColor);
 		CursorFont.drawString(62, 348, "> ");
 	}
 

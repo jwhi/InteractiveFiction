@@ -28,6 +28,12 @@ public class FarmScene extends BasicScene {
 		SpriteSheet FireSheet = new SpriteSheet("res/animations/fire.png", 23, 28);
 		FireAnimation = new Animation(FireSheet, 250);
 		
+		setDescription(new String[] {"Hello, World!", 
+				"There is a cabin here with a old farmer.",
+				"There is a pile of wood next to the cabin ready to be lit.",
+				"There is a [[book]] in the grass near the cabin.",
+				"It is a beautiful summer day."});
+		
 		SpriteSheet SmokeSheet = new SpriteSheet("res/animations/smoke.png", 29, 67);
 		SmokeAnimation = new Animation(SmokeSheet, 750);
 	}

@@ -11,6 +11,7 @@ public class BasicScene {
 	private static CommandSet Commands;
 	private static int SceneX = 558;
 	private static int SceneY = 48;
+	private static String[] Description;
 	
 	public BasicScene() {
 		Commands = new CommandSet();
@@ -66,5 +67,13 @@ public class BasicScene {
 	
 	public void sceneCliked(int x, int y) {
 		
+	}
+
+	public String[] getDescription() {
+		return Description;
+	}
+
+	public static void setDescription(String[] description) {
+		Description = description;
 	}
 }
