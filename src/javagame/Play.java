@@ -162,7 +162,11 @@ public class Play extends BasicGameState {
 		if (Mouse.isButtonDown(0) && AllowClick)
 		{
 			scene.sceneCliked(Mouse.getX(), Mouse.getY());
-			textHandle.textClicked(Mouse.getX(), gc.getHeight() - Mouse.getY());
+			if (textHandle.textClicked(Mouse.getX(), gc.getHeight() - Mouse.getY())) {
+				sbg.enterState(2);
+			} else {
+				System.out.println("Mouse clicked at: " + Mouse.getX() + ", " + Mouse.getY());
+			}
 			AllowClick = false;
 		}
 		if (!Mouse.isButtonDown(0)) {

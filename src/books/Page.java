@@ -33,4 +33,8 @@ public class Page {
 		Contents.add("Etiam at elit pulvinar, varius felis");
 		Contents.add("egestas, semper lorem.");
 	}
+	
+	public ArrayList<String> getContents() {
+		return Contents;
+	}
 }

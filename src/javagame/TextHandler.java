@@ -92,9 +92,12 @@ public class TextHandler {
 		}
 	}
 	
-	public void textClicked(int MouseX, int MouseY) {
+	public boolean textClicked(int MouseX, int MouseY) {
 		if ((MouseX > MouseMinX) && (MouseX < MouseMaxX) && (MouseY > MouseMinY) && (MouseY < MouseMaxY)) {
 			System.out.println("Link is clicked for book!");
+			return true;
 		}
+		
+		return false;
 	}
 }

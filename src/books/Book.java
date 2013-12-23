@@ -13,6 +13,7 @@ public class Book {
 	
 	public Book(int id) {
 		ID = id;
+		Pages = new ArrayList<Page>();
 		// Use id to read from a file and then find the additional information about the book.
 		Title = "Test Book";
 		Author = "Unknown";
@@ -31,5 +32,17 @@ public class Book {
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public ArrayList<Page> getPages() {
+		return Pages;
+	}
+	
+	public Page getPage(int pageNumber) {
+		return getPages().get(pageNumber);
+	}
+	
+	public ArrayList<String> getPageText(int pageNumber) {
+		return getPages().get(pageNumber-1).getContents();
 	}
 }
