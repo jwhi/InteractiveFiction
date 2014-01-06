@@ -142,6 +142,11 @@ public class FarmScene extends BasicScene {
 		case "remove":
 			verb = "clear";
 			break;
+		case "read":
+		case "examine":
+		case "look":
+			verb = "examine";
+			break;
 		}
 		
 		// Checks if the first noun is valid for the scene, then checks if the verb is valid for the noun.
@@ -195,6 +200,11 @@ public class FarmScene extends BasicScene {
 					actionText = "Error: Unable to " + verbs.get(0) + " the " + nouns.get(0) + ".";
 				}
 			break;
+			case "book":
+				switch (verb) {
+				case "examine":
+					actionText = examine("book");
+				}
 			}
 		} else {
 			return "Error: What do you want to " + verbs.get(0) + "?";
@@ -263,5 +273,14 @@ public class FarmScene extends BasicScene {
 		}
 		
 		return actionText;
+	}
+	
+	public String examine(String object) {
+		switch(object) {
+		case "book":
+			return "You pick up the book and read...";
+		default:
+			return "You cannot examine a " + object + ".";	
+		}
 	}
 }

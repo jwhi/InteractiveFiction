@@ -37,4 +37,8 @@ public class Page {
 	public ArrayList<String> getContents() {
 		return Contents;
 	}
+	
+	public void addContents (String str) {
+		Contents.add(str);
+	}
 }

@@ -133,7 +133,11 @@ public class Play extends BasicGameState {
 			// If the exit command is used, InvalidCommandText becomes equal to Exiting...
 			// When this happens, call the game container's exit function
 			gc.exit();
+		} else if (ActionText == "You pick up the book and read...") {
+			ActionText = "";
+			sbg.enterState(2);
 		}
+		
 		
 		// The text field would no longer be focus if the window was clicked or switched to another window
 		// Wasn't able to click in the text field to focus, this allows the user to always be able to enter text.
@@ -165,7 +169,7 @@ public class Play extends BasicGameState {
 			if (textHandle.textClicked(Mouse.getX(), gc.getHeight() - Mouse.getY())) {
 				sbg.enterState(2);
 			} else {
-				System.out.println("Mouse clicked at: " + Mouse.getX() + ", " + Mouse.getY());
+				// System.out.println("Mouse clicked at: " + Mouse.getX() + ", " + Mouse.getY());
 			}
 			AllowClick = false;
 		}
