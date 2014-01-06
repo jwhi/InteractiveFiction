@@ -14,6 +14,8 @@ public class Book {
 	private int ID;
 	private String Title;
 	private String Author;
+	// Color chooses which background to use
+	private String Color;
 	ArrayList<Page> Pages;
 	
 	public Book(int id) {
@@ -52,7 +54,7 @@ public class Book {
 	
 	public void ReadXML(int id) {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("res/books/100000.xml"));
+			BufferedReader reader = new BufferedReader(new FileReader("res/books/" + id + ".xml"));
 			Builder parser = new Builder();
 			Document doc = parser.build(reader);
 			Element root = doc.getRootElement();
@@ -67,27 +69,23 @@ public class Book {
 		}
 	}
 	
-	public void listChildren(Node current, int depth) {
-		for (int i = 0; i < depth; i++) {
-			System.out.print(" ");
-		}
-		String data = "";
-		
+	public void listChildren(Node current, int depth) {	
 		if (current instanceof Element) {
 			Element temp = (Element) current;
-			data = ": " + temp.getQualifiedName();
 			if (temp.getQualifiedName().compareTo("title") == 0) {
 				Title = temp.getChild(0).getValue();
 				System.out.println("Title: " + Title);
 			} else if (temp.getQualifiedName().compareTo("author") == 0) {
 				Author = temp.getChild(0).getValue();
 				System.out.println("Author: " + Author);
+			} else if (temp.getQualifiedName().compareTo("color") == 0) {
+				Color = temp.getChild(0).getValue();
 			} else if (temp.getQualifiedName().compareTo("pages") == 0) {
-				Page p = new Page();
 				for (int i = 0; i < temp.getChildCount(); i++) {
 					Node pagesChild = temp.getChild(i);
 					if (pagesChild instanceof Element) {
 						if (((Element) pagesChild).getQualifiedName().compareTo("page") == 0) {
+							Page p = new Page();
 							for (int j = 0; j < pagesChild.getChildCount(); j++) {
 								Node pageContent = pagesChild.getChild(j);
 								if (pageContent instanceof Element) {
@@ -96,28 +94,25 @@ public class Book {
 									}
 								}
 							}
+							Pages.add(p);
 						}
 					}
 				}
-				
-				Pages.add(p);
 			}
 		} else if (current instanceof ProcessingInstruction) {
 			ProcessingInstruction temp = (ProcessingInstruction) current;
-			data = ": " + temp.getTarget();
 		} else if (current instanceof DocType) {
 			DocType temp = (DocType) current;
-			data = ": " + temp.getRootElementName();
 		} else if (current instanceof Text || current instanceof Comment) {
 			String value = current.getValue();
 			value = value.replace('\n', ' ').trim();
-			if (value.length() <= 20) data = ": " + value;
-			else data = ": " + current.getValue().substring(0, 17) + "...";
 		}
-		// Attributes are never returned by getChild()
-		// System.out.println(current.getClass().getName() + data);
 		for (int i = 0; i < current.getChildCount(); i++) {
 			listChildren(current.getChild(i), depth+1);
 		}
+	}
+	
+	public String getBackgroundColor () {
+		return Color;
 	}
 }

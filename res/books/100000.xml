@@ -1,21 +1,25 @@
 <book>
 	<title>Test Book</title>
 	<author>Unknown</author>
+	<color>Black</color>
 	<pages>
 		<page>
 			<text>This is a test page.</text>
-			<text>This currently does not have any images. Maybe in</text>
-			<text>the near future, it will be added.</text>
+			<text>This currently does not have any</text>
+			<text>images. Maybe in the near future,</text>
+			<text>it will be added.</text>
 			<text> </text>
-			<text>Lorem ipsum dolor sit amet, consectetur</text>
-			<text>adipiscing elit. Ut viverra scelerisque</text>
-			<text>condimentum. Morbi nisi ipsum, venenatis</text>
-			<text>vitae felis ac, faucibus dapibus sapien.</text>
-			<text>Etiam at elit pulvinar, varius felis</text>
-			<text>egestas, semper lorem.</text>
-			<text> </text>
-			<text>Books are read from this XML and it actually works!</text>
-			<text>I am both excited and surprised that this is working.</text>
+			<text>Lorem ipsum dolor sit amet,</text>
+			<text>consectetur adipiscing elit. Ut</text>
+			<text>viverra scelerisque condimentum.</text>
+			<text>Morbi nisi ipsum, venenatis</text>
+			<text>vitae felis ac, faucibus dapibus</text>
+			<text>sapien. Etiam at elit pulvinar,</text>
+			<text>varius felis egestas, semper lorem.</text>
+		</page>
+		<page>
+			<text>Books are read from this XML.</text>
+			<text>I am excited that it is working.</text>
 		</page>
 	</pages>
 </book>
