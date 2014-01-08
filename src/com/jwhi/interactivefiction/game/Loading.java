@@ -1,4 +1,4 @@
-package javagame;
+package com.jwhi.interactivefiction.game;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

@@ -1,4 +1,4 @@
-package scenes;
+package com.jwhi.interactivefiction.scenes;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,11 +28,21 @@ public class FarmScene extends BasicScene {
 		SpriteSheet FireSheet = new SpriteSheet("res/animations/fire.png", 23, 28);
 		FireAnimation = new Animation(FireSheet, 250);
 		
-		setDescription(new String[] {"Hello, World!", 
-				"There is a cabin here with a old farmer.",
-				"There is a pile of wood next to the cabin ready to be lit.",
+		setDescription(new String[] {"Hello! Welcome to the beginning of the game.",
+				"There isn't much of a game here, but there is an old farmer!",
+				"He's just over there by that cabin.",
+				"There is also a pile of wood next to the cabin ready to be lit.",
 				"There is a [[book]] in the grass near the cabin.",
-				"It is a beautiful summer day."});
+				" ",
+				"To light the fire, type light the fire. Or set the fire aflame.",
+				"You can type a few things in there to make fire happen.",
+				"Clicking on the logs makes things happen too.",
+				" ",
+				"To read the book, click the word book that is blue. You are",
+				"able to enter things like 'read the book' or 'examine book'.",
+				"That will make the same thing happen. More about the game",
+				"and its future is in that book. Who knows how accurate it is",
+				"though. Can't really do anything else at the moment."});
 		
 		SpriteSheet SmokeSheet = new SpriteSheet("res/animations/smoke.png", 29, 67);
 		SmokeAnimation = new Animation(SmokeSheet, 750);

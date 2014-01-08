@@ -1,10 +1,11 @@
-package scenes;
+package com.jwhi.interactivefiction.scenes;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import commandhandler.CommandSet;
+import com.jwhi.interactivefiction.commandhandler.CommandSet;
+
 
 public class BasicScene {
 	private static Image Background;

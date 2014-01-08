@@ -1,25 +1,105 @@
 <book>
-	<title>Test Book</title>
-	<author>Unknown</author>
+	<title>Introduction</title>
+	<author>Jeremy White</author>
 	<color>Black</color>
 	<pages>
 		<page>
-			<text>This is a test page.</text>
-			<text>This currently does not have any</text>
-			<text>images. Maybe in the near future,</text>
-			<text>it will be added.</text>
+		<!-- Pages can by 20 lines long -->
+		<!-- First page can fit 34 characters across using the default font -->
+		<!-- Second page can fit 32 characters across using the default font -->
+			<text>Welcome to my text adventure!</text>
+			<text>You can turn the pages of the book</text>
+			<text>using the buttons to the right.</text>
 			<text> </text>
-			<text>Lorem ipsum dolor sit amet,</text>
-			<text>consectetur adipiscing elit. Ut</text>
-			<text>viverra scelerisque condimentum.</text>
-			<text>Morbi nisi ipsum, venenatis</text>
-			<text>vitae felis ac, faucibus dapibus</text>
-			<text>sapien. Etiam at elit pulvinar,</text>
-			<text>varius felis egestas, semper lorem.</text>
+			<text>You can also use:</text>
+			<text>    comma and period (, .)</text>
+			<text>    brackets ([ ])</text>
+			<text>    left and right arrow keys</text>
+			<text> </text>
+			<text>To close the book, press the</text>
+			<text>return button. The space bar and</text>
+			<text>the letter x will also work to</text>
+			<text>close the book.</text>
+			<text> </text>
+			<text>Books will be found all throughout</text>
+			<text>the world and will contain</text>
+			<text>information about the history of</text>
+			<text>the world, different places in the</text>
+			<text>game, and there will be books you</text>
+			<text>wrote yourself! You'll be able to</text>
 		</page>
 		<page>
-			<text>Books are read from this XML.</text>
-			<text>I am excited that it is working.</text>
+			<text>keep a journal of your travels</text>
+			<text>and record any information you</text>
+			<text>feel might find useful later in</text>
+			<text>your adventures.</text>
+			<text>   The game will start out you</text>
+			<text>hearing news of the launch of</text>
+			<text>the Sputnik 1 satellite by the</text>
+			<text>Soviet Union as a child. This</text>
+			<text>event and the choices you make</text>
+			<text>will decide what your role</text>
+			<text>plays in your future and the</text>
+			<text>future of others.</text>
+			<text>   You could become a man of</text>
+			<text>science, politics, education,</text>
+			<text>war, religion or something</text>
+			<text>else entirely.</text>
+			<text> </text>
+			<text>Play your role in preventing</text>
+			<text>or causing a world war.</text>
+		</page>
+		<page>
+			<text>   The game encourages exploration</text>
+			<text>and creating your own path through</text>
+			<text>the story. Choosing to make a text</text>
+			<text>adventure came from being limited</text>
+			<text>by the amount of resources to</text>
+			<text>create the size of world I wanted</text>
+			<text>that also contained the level of</text>
+			<text>detail. The easy input of text</text>
+			<text>commands will allow you to</text>
+			<text>interact with objects and perform</text>
+			<text>more complex actions.</text>
+			<text>   Ask an NPC any question, or</text>
+			<text>compliment them about their wife</text>
+			<text>husband, shoes, or promotion. You</text>
+			<text>could light a fire and throw</text>
+			<text>everything they own into it, if</text>
+			<text>that's what you're into.</text>
+			<text>   The game centers around you</text>
+			<text>doing whatever you want and</text>
+			<text>making that as easy as possible.</text>
+		</page>
+		<page>
+			<text>   The world will be made up of </text>
+			<text>different scenes. Some will have</text>
+			<text>an image and animation, others</text>
+			<text>will not. It would not be</text>
+			<text>possible to create enough image</text>
+			<text>representations of each scene.</text>
+			<text>The text will always be the main</text>
+			<text>tool to illustrate a scene. An</text>
+			<text>animation may sometimes be next</text>
+			<text>to the text to help portray a</text>
+			<text>complicated environment or fill</text>
+			<text>out a scene in ways text can't.</text>
+			<text>   Different people you meet in</text>
+			<text>the world will have their own</text>
+			<text>unique history, just like you.</text>
+			<text>Your interactions with them and</text>
+			<text>people their associated with can</text>
+			<text>affect their future.</text>
+		</page>
+		<page>
+			<text>   This game is being worked on</text>
+			<text>when I have both inspiration and</text>
+			<text>time. I am focusing on the game</text>
+			<text>engine primarily right now. I need</text>
+			<text>to make the creation of scenes and</text>
+			<text>interactions as simple as I can to</text>
+			<text>allow the scale of game I want</text>
+			<text>this project to become.</text>
 		</page>
 	</pages>
 </book>

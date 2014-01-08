@@ -1,0 +1,12 @@
+<book>
+	<title>Testing One Page Books</title>
+	<author>Jeremy White</author>
+	<color>Black</color>
+	<pages>
+		<page>
+			<text>Testing to see if one page is</text>
+			<text>displayed correctly. Hoping it</text>
+			<text>leads to a hit series of books.</text>
+		</page>
+	</pages>
+</book>

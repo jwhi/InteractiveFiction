@@ -1,4 +1,4 @@
-package commandhandler;
+package com.jwhi.interactivefiction.game;
 
 import java.io.IOException;
 
@@ -9,18 +9,13 @@ public class PlayerCommandAnalyzer {
 	public static MaxentTagger tagger;
 	
 	public PlayerCommandAnalyzer() {
-		tagger = new MaxentTagger("taggers/english-bidirectional-distsim.tagger");
+		tagger = new MaxentTagger("res/taggers/english-bidirectional-distsim.tagger");
 	}
 	
-	// Returns the command with the tags added to each word.
-	// Example Input: This is a sample sentence
-	// Example Output: This_DT is_VBZ a_DT sample_NN sentence_NN
-	// Uses abbreviations from the Penn Treebank Tagset fount at http://www.computing.dcu.ie/~acahill/tagset.html
 	public String toTagged(String cmd) throws IOException {
 		return tagger.tagString(cmd);
 	}
 	
-	// Splits the tagged sentence into a string array. Each word is followed by it's tag in the array
 	public String[] splitCommand(String cmd) {
 		String str = "";
 		try {
@@ -31,7 +26,6 @@ public class PlayerCommandAnalyzer {
 		return str.split("\\s*[^a-zA-Z]+\\s*");
 	}
 	
-	// Returns the chosen tag if it appears in the sentence
 	public String getSelectedTag(String cmd, String tag) {
 		String[] str = splitCommand(cmd);
 		for (int i = 0; i < str.length; i++) {
@@ -43,12 +37,19 @@ public class PlayerCommandAnalyzer {
 		return "";
 	}
 	
-	// Switch between the two taggers I found most accurate. Not the most efficient since it takes about 8 seconds to load each tagger.
+	public String getVerb(String cmd) {
+		return getSelectedTag(cmd, "VB");
+	}
+	
+	public String getNoun(String cmd) {
+		return getSelectedTag(cmd,"NN");
+	}
+	
 	public void usePrimaryTagger(boolean val) {
 		if (val) {
-			tagger = new MaxentTagger("taggers/english-bidirectional-distsim.tagger");
+			tagger = new MaxentTagger("res/taggers/english-bidirectional-distsim.tagger");
 		} else {
-			tagger = new MaxentTagger("taggers/wsj-0-18-bidirectional-nodistsim.tagger");
+			tagger = new MaxentTagger("res/taggers/wsj-0-18-bidirectional-nodistsim.tagger");
 		}
 	}
 }

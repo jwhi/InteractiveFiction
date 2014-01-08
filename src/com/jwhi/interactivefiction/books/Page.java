@@ -1,4 +1,4 @@
-package books;
+package com.jwhi.interactivefiction.books;
 
 import java.util.ArrayList;
 

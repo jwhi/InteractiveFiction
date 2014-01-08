@@ -1,4 +1,4 @@
-package javagame;
+package com.jwhi.interactivefiction.game;
 
 public class Properties {
 	private int ScreenResWidth = 854;

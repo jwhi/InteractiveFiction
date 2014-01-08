@@ -1,4 +1,4 @@
-package commandhandler;
+package com.jwhi.interactivefiction.commandhandler;
 
 import java.io.IOException;
 import java.util.ArrayList;

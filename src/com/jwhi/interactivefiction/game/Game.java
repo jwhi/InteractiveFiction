@@ -1,4 +1,6 @@
-package javagame;
+package com.jwhi.interactivefiction.game;
+
+import java.io.File;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
@@ -8,7 +10,7 @@ public class Game extends StateBasedGame {
 	public static final String gamename = "Text Adventure";
 	public static final int loading = 0;
 	public static final int play = 1;
-	
+	public static String OS = null;
 	public static Properties properties;
 	
 	public Game(String gamename) {
@@ -26,6 +28,18 @@ public class Game extends StateBasedGame {
 	}
 	
 	public static void main(String[] args) {
+		OS = System.getProperty("os.name").toLowerCase();
+		if (OS.indexOf("win") >= 0) {
+			OS = "windows";
+		} else if (OS.indexOf("mac") >= 0) {
+			OS = "macosx";
+		} else if (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 ) {
+			OS = "linux";
+		} else if (OS.indexOf("sunos") >= 0) {
+			OS = "solaris";
+		}
+		System.setProperty("org.lwjgl.librarypath",System.getProperty("user.dir") + File.separator + "res" + File.separator + "natives" + File.separator + OS);
+		
 		AppGameContainer appgc;
 		try {
 			appgc = new AppGameContainer(new Game(gamename));

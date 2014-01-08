@@ -1,4 +1,4 @@
-package javagame;
+package com.jwhi.interactivefiction.game;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
@@ -7,7 +7,8 @@ import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.TextField;
 
-import scenes.*;
+import com.jwhi.interactivefiction.scenes.*;
+
 
 public class Play extends BasicGameState {
 
@@ -183,7 +184,7 @@ public class Play extends BasicGameState {
 		
 		// After the description for the scene, writes the text used for invalid commands as well as the exiting... text
 		if (ActionText.length() > 0) {
-			textHandle.getGameFont().drawString(62, 300, ActionText, textHandle.getFontColor());
+			textHandle.getGameFont().drawString(62, 328, ActionText, textHandle.getFontColor());
 		}
 		
 		g.setColor(textHandle.getFontColor());
@@ -191,6 +192,10 @@ public class Play extends BasicGameState {
 		CursorFont.drawString(62, 348, "> ");
 	}
 
+	// To clear out any text input that might be caused when using keyboard navigation when viewing a book.
+	public void clearTextField() {
+		tf.setText("");
+	}
 	
 	public int getID() {
 		return 1;

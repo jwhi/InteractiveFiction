@@ -1,4 +1,4 @@
-package javagame;
+package com.jwhi.interactivefiction.game;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

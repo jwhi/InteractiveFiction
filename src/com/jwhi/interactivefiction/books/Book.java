@@ -1,4 +1,4 @@
-package books;
+package com.jwhi.interactivefiction.books;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -74,10 +74,8 @@ public class Book {
 			Element temp = (Element) current;
 			if (temp.getQualifiedName().compareTo("title") == 0) {
 				Title = temp.getChild(0).getValue();
-				System.out.println("Title: " + Title);
 			} else if (temp.getQualifiedName().compareTo("author") == 0) {
 				Author = temp.getChild(0).getValue();
-				System.out.println("Author: " + Author);
 			} else if (temp.getQualifiedName().compareTo("color") == 0) {
 				Color = temp.getChild(0).getValue();
 			} else if (temp.getQualifiedName().compareTo("pages") == 0) {
@@ -99,13 +97,13 @@ public class Book {
 					}
 				}
 			}
-		} else if (current instanceof ProcessingInstruction) {
-			ProcessingInstruction temp = (ProcessingInstruction) current;
-		} else if (current instanceof DocType) {
-			DocType temp = (DocType) current;
-		} else if (current instanceof Text || current instanceof Comment) {
-			String value = current.getValue();
-			value = value.replace('\n', ' ').trim();
+		//} else if (current instanceof ProcessingInstruction) {
+			//ProcessingInstruction temp = (ProcessingInstruction) current;
+		//} else if (current instanceof DocType) {
+			//DocType temp = (DocType) current;
+		//} else if (current instanceof Text || current instanceof Comment) {
+			//String value = current.getValue();
+			//value = value.replace('\n', ' ').trim();
 		}
 		for (int i = 0; i < current.getChildCount(); i++) {
 			listChildren(current.getChild(i), depth+1);
@@ -114,5 +112,14 @@ public class Book {
 	
 	public String getBackgroundColor () {
 		return Color;
+	}
+	
+	public static boolean isValidBook (int id) {
+		File desiredBook = new File("res/books/" + id + ".xml");
+		if (desiredBook.exists()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

@@ -1,0 +1,26 @@
+<book>
+	<title>Testing Three Page Books</title>
+	<author>Jeremy White</author>
+	<color>Black</color>
+	<pages>
+		<page>
+			<text>Testing to see if three pages are</text>
+			<text>displayed correctly. This is the</text>
+			<text>second book in a stunning series.</text>
+		</page>
+		<page>
+			<text>Now it is 300% longer! Think of</text>
+			<text>the sales I will be able to</text>
+			<text>reach with this new technology!</text>
+		</page>
+		<page>
+			<text>I currently do not have a way</text>
+			<text>to switch between pages. But</text>
+			<text>someday I will! Think of this</text>
+			<text>sweet sweet text that will be</text>
+			<text>seen with this possibility!</text>
+			<text>Tears will happen with its</text>
+			<text>beauty.</text>
+		</page>
+	</pages>
+</book>
