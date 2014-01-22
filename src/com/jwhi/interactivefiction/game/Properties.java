@@ -1,18 +1,17 @@
 package com.jwhi.interactivefiction.game;
 
 public class Properties {
-	private int ScreenResWidth = 854;
-	private int ScreenResHeight = 480;
-	private boolean Fullscreen = false;
-	private boolean VSync = true;
-	private int FPSLimit = 60;
+	protected static int ScreenResWidth = 1280;
+	protected static int ScreenResHeight = 720;
+	protected boolean Fullscreen = false;
+	protected boolean VSync = true;
+	protected int FPSLimit = 60;
+	protected float ResolutionScale = (float) ScreenResWidth / 1280;
+	protected static int FontSize = Constants.DefaultFontSize;
+	protected static int BackgroundTransparency = Constants.DefaultBackgroundTransparency;
 	
 	public Properties() {
-		ScreenResWidth = 854;
-		ScreenResHeight = 480;
-		Fullscreen = false;
-		VSync = true;
-		FPSLimit = 60;
+		ResolutionScale = (float) ScreenResWidth / 1280;
 	}
 	
 	public Properties(int ScreenWidth, int ScreenHeight, boolean fullscreen, boolean vsync) {
@@ -21,42 +20,23 @@ public class Properties {
 		Fullscreen = fullscreen;
 		VSync = vsync;
 		FPSLimit = 60;
-	}
-	
-	public int getScreenResWidth() {
-		return ScreenResWidth;
+		ResolutionScale = (float) ScreenResWidth / 1280;
 	}
 	
 	public void setScreenResWidth(int width) {
 		ScreenResWidth = width;
 	}
 	
-	public int getScreenResHeight() {
-		return ScreenResHeight;
-	}
-	
 	public void setScreenResHeight(int height) {
 		ScreenResHeight = height;
-	}
-	
-	public boolean getFullscreen() {
-		return Fullscreen;
 	}
 	
 	public void setFullscreen(boolean fullscreen) {
 		Fullscreen = fullscreen;
 	}
 	
-	public boolean getVSync() {
-		return VSync;
-	}
-	
 	public void setVSync(boolean vsync) {
 		VSync = vsync;
-	}
-	
-	public int getFPSLimit() {
-		return FPSLimit;
 	}
 	
 	public void setFPSLimit(int limit) {

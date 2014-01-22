@@ -1,6 +1,5 @@
 package com.jwhi.interactivefiction.game;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
@@ -8,13 +7,12 @@ import org.newdawn.slick.state.*;
 import com.jwhi.interactivefiction.books.Book;
 
 
-public class BookView extends BasicGameState {
-
+public class BookView extends BaseView {
 	Book Reading;
 	TrueTypeFont BookFont;
 	TrueTypeFont BookFontBold;
 	Color UIColor = Color.white;
-	private boolean AllowInput = true;
+	private boolean allowClick = true;
 	int buttonMinX = 0;
 	int buttonMaxX = 0;
 	int buttonMinY = 0;
@@ -22,6 +20,7 @@ public class BookView extends BasicGameState {
 	int currentPage = 0;	// currentPage is used to determine which two pages to display. Multiplied by 2 to figure out the page displayed on the left side of book.
 	
 	public BookView (int state) {
+		super(state);
 		java.awt.Font awtFont = new java.awt.Font("Courier", java.awt.Font.PLAIN, 14);
 		BookFont = new TrueTypeFont((java.awt.Font) awtFont, false);
 		awtFont = new java.awt.Font("Courier", java.awt.Font.BOLD, 16);
@@ -105,12 +104,12 @@ public class BookView extends BasicGameState {
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		if (Mouse.isButtonDown(0) && AllowInput) {
+		if (Mouse.isButtonDown(0) && allowClick) {
 			if ((Mouse.getX() > buttonMinX) && (Mouse.getX() < buttonMaxX)
 					&& (gc.getHeight() - Mouse.getY() > buttonMinY) && (gc.getHeight() - Mouse.getY() < buttonMaxY)) {
 				// Need to reset the current page and return to previous screen
 				currentPage = 0;
-				((Play) sbg.getState(1)).clearTextField();
+//				((Play) sbg.getState(1)).clearTextField();
 				sbg.enterState(1);
 			} else if ((Mouse.getX() > buttonMaxX+10) && (Mouse.getX() < buttonMaxX+BookFont.getWidth("Next")+20)
 					&& (gc.getHeight() - Mouse.getY() > buttonMinY) && (gc.getHeight() - Mouse.getY() < buttonMaxY)
@@ -121,30 +120,44 @@ public class BookView extends BasicGameState {
 					&& (currentPage != 0)) {
 				currentPage -= 1;
 			}
-			AllowInput = false;
+			allowClick = false;
 		}
 		
 		// Keys for the next page are period, right bracket, right arrow key.
 		// Previous page keys are comma, left bracket, left arrow key.
-		// Return to scene keys are space, x.
-		if ((AllowInput) && ((currentPage*2)+2 < Reading.getPages().size())
-				&& (Keyboard.isKeyDown(Input.KEY_PERIOD) || Keyboard.isKeyDown(Input.KEY_RBRACKET) || Keyboard.isKeyDown(Input.KEY_RIGHT))) {
-			currentPage += 1;
-			AllowInput = false;
-		} else if ((AllowInput) && (currentPage != 0)
-				&& (Keyboard.isKeyDown(Input.KEY_COMMA) || Keyboard.isKeyDown(Input.KEY_LBRACKET) || Keyboard.isKeyDown(Input.KEY_LEFT))) {
-			currentPage -= 1;
-			AllowInput = false;
-		} else if ((AllowInput)
-				&& (Keyboard.isKeyDown(Input.KEY_SPACE) || Keyboard.isKeyDown(Input.KEY_X))) {
-			AllowInput = false;
-			currentPage = 0;
-			((Play) sbg.getState(1)).clearTextField();
-			sbg.enterState(1);
-		} 
+		// Return to scene keys are space, x, escape.
+		if (KeyPressed) {
+			if ((currentPage*2)+2 < Reading.getPages().size()) {
+				switch (Key) {
+				case (Input.KEY_PERIOD):
+				case (Input.KEY_RBRACKET):
+				case (Input.KEY_RIGHT):
+					currentPage += 1;
+					break;
+				}
+			}
+			if (currentPage != 0) {
+				switch (Key) {
+				case (Input.KEY_COMMA):
+				case (Input.KEY_LBRACKET):
+				case (Input.KEY_LEFT):
+					currentPage -= 1;
+					break;
+				}
+			}
+			switch(Key) {
+			case (Input.KEY_SPACE):
+			case (Input.KEY_X):
+			case (Input.KEY_ESCAPE):
+				currentPage = 0;
+				sbg.enterState(PreviousState);
+			}
+		}
 		
-		if (!Mouse.isButtonDown(0) && !Keyboard.getEventKeyState() && !AllowInput) {
-			AllowInput = true;
+		clearInput();
+		
+		if (!Mouse.isButtonDown(0) && !allowClick) {
+			allowClick = true;
 		}
 		
 		
@@ -152,9 +165,5 @@ public class BookView extends BasicGameState {
 	
 	public void setID(int id) {
 		Reading = new Book(id);
-	}
-
-	public int getID() {
-		return 2;
 	}
 }

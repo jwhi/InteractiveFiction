@@ -8,18 +8,21 @@ import org.newdawn.slick.*;
 public class TextHandler {
 	private TrueTypeFont GameFont;
 	private TrueTypeFont LinkFont;
+//	private TrueTypeFont HeaderFont;
 	private Color FontColor;
 	private Color LinkColor;
 	private int MouseMinX;
 	private int MouseMaxX;
 	private int MouseMinY;
 	private int MouseMaxY;
+	private String FontName = "Courier New";
+//	private int HeaderSize = 5;
 	
 	public TextHandler () {
-		java.awt.Font awtFont = new java.awt.Font("Courier", java.awt.Font.PLAIN, 12);
+		java.awt.Font awtFont = new java.awt.Font(FontName, java.awt.Font.PLAIN, Properties.FontSize);
 		GameFont = new TrueTypeFont((java.awt.Font) awtFont, false);
 		
-		awtFont = new java.awt.Font("Courier", java.awt.Font.BOLD, 12);
+		awtFont = new java.awt.Font(FontName, java.awt.Font.BOLD, Properties.FontSize);
 		LinkFont = new TrueTypeFont((java.awt.Font) awtFont, false);
 		
 		FontColor = Color.white;
@@ -33,20 +36,7 @@ public class TextHandler {
 	public TrueTypeFont getGameFont () {
 		return GameFont;
 	}
-	
-	public void setGameFont (String fontName, boolean bold, int size) {
-		java.awt.Font awtFont = new java.awt.Font(fontName, (bold ? java.awt.Font.BOLD : java.awt.Font.PLAIN), size);
-		GameFont = new TrueTypeFont((java.awt.Font)awtFont, false);
-	}
-	
-	public void setLinkFont (TrueTypeFont font) {
-		LinkFont = font;
-	}
-	
-	public void setLinkFont (String fontName, boolean bold, int size) {
-		java.awt.Font awtFont = new java.awt.Font(fontName, (bold ? java.awt.Font.BOLD : java.awt.Font.PLAIN), size);
-		LinkFont = new TrueTypeFont((java.awt.Font)awtFont, false);
-	}
+
 	
 	public void setFontColor (Color color) {
 		FontColor = color;
@@ -60,12 +50,14 @@ public class TextHandler {
 		LinkColor = color;
 	}
 	
+	public void drawHeader(String[] strings) {
+		
+	}
+	
 	public void drawStrings(String[] strings) {
+		int lineX = 10;
+		int lineY = 30;
 		for (int i = 0; i < strings.length; i++) {
-
-			int lineX = 62;
-			int lineY = 60+(i*GameFont.getLineHeight());
-			
 			if (strings[i].contains("[[") && strings[i].contains("]]")) {
 				String s1 = strings[i].substring(0, strings[i].indexOf('['));
 				Pattern p = Pattern.compile("\\[\\[(.*?)\\]\\]");
@@ -76,7 +68,6 @@ public class TextHandler {
 				    s2 = (m.group(1));
 				}
 				String s3 = strings[i].substring(strings[i].indexOf(']')+2);
-				
 				GameFont.drawString(lineX, lineY, s1, FontColor);
 				lineX += GameFont.getWidth(s1);
 				LinkFont.drawString(lineX, lineY, s2, LinkColor);
@@ -89,6 +80,7 @@ public class TextHandler {
 			} else {
 				GameFont.drawString(lineX, lineY, strings[i]);
 			}
+			lineY = lineY + LinkFont.getLineHeight() + (i*GameFont.getLineHeight());
 		}
 	}
 	
@@ -99,5 +91,13 @@ public class TextHandler {
 		}
 		
 		return false;
+	}
+	
+	public void updateFontSize() {
+		java.awt.Font awtFont = new java.awt.Font(FontName, java.awt.Font.PLAIN, Properties.FontSize);
+		GameFont = new TrueTypeFont((java.awt.Font) awtFont, false);
+		
+		awtFont = new java.awt.Font(FontName, java.awt.Font.BOLD, Properties.FontSize);
+		LinkFont = new TrueTypeFont((java.awt.Font) awtFont, false);
 	}
 }

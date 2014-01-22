@@ -10,21 +10,25 @@ public class Loading extends BasicGameState {
 
 	private Image loadingImage;
 	private int step = 0;
-	private int play = 1;
-	private int book = 2;
+//	private int play = Constants.Play;
+	private int book = Constants.Book;
+	private int isometric = Constants.Isometric;
+	private int options = Constants.Options;
+	private int stateID;
 	
-	public Loading(int state) {
-		
+	public Loading(int state, Properties props) {
+		stateID = state;
 	}
 	
 	// Loads the image for the loadscreen
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		loadingImage = new Image("res/backgrounds/EmeraldGhostWizard.png");
+		loadingImage = new Image("res/backgrounds/LoadingScreen1280x720.png");
 	}
 
 	// Draws the loading screen
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(loadingImage, 0, 0);
+//		g.drawImage(loadingImage, 0, 0);
+		loadingImage.draw(0, 0, gc.getWidth()/Constants.MaxResourceWidth);
 		
 	}
 
@@ -36,13 +40,17 @@ public class Loading extends BasicGameState {
 		case 0:
 			break;
 		case 1:
-			sbg.addState(new Play(play));
+			//sbg.addState(new Play(play));
 			sbg.addState(new BookView(book));
-			sbg.getState(play).init(gc, sbg);
+			sbg.addState(new IsometricView(isometric));
+			sbg.addState(new OptionsView(options));
+			//sbg.getState(play).init(gc, sbg);
 			sbg.getState(book).init(gc, sbg);
+			sbg.getState(isometric).init(gc, sbg);
+			sbg.getState(options).init(gc, sbg);
 			break;
 		case 2:
-			sbg.enterState(play);
+			sbg.enterState(isometric);
 			break;
 		}
 		
@@ -50,7 +58,7 @@ public class Loading extends BasicGameState {
 	}
 
 	public int getID() {
-		return 0;
+		return stateID;
 	}
 
 }

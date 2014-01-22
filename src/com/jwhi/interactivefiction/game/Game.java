@@ -8,16 +8,18 @@ import org.newdawn.slick.state.*;
 public class Game extends StateBasedGame {
 	
 	public static final String gamename = "Text Adventure";
-	public static final int loading = 0;
-	public static final int play = 1;
+	public static final int loading = Constants.Loading;
+//	public static final int play = Constants.Play;
+	public static final int resolutionWidth = 1280;
+	public static final int resolutionHeight = 720;
 	public static String OS = null;
 	public static Properties properties;
 	
 	public Game(String gamename) {
 		super(gamename);
 		// Properties for the game. Constructor takes in the width, height, fullscreen, and vsync
-		properties = new Properties(854, 480, false, true);
-		this.addState(new Loading(loading));
+		properties = new Properties(resolutionWidth, resolutionHeight, false, true);
+		this.addState(new Loading(loading,properties));
 //		this.addState(new Play(play));
 	}
 	
@@ -44,16 +46,16 @@ public class Game extends StateBasedGame {
 		try {
 			appgc = new AppGameContainer(new Game(gamename));
 			// Create a display using the properties created earlier
-			appgc.setDisplayMode(properties.getScreenResWidth(), properties.getScreenResHeight(), properties.getFullscreen());
+			appgc.setDisplayMode(properties.ScreenResWidth, properties.ScreenResHeight, properties.Fullscreen);
 			// Decides whether or not that vsync is enabled based on the games properties
-			appgc.setVSync(properties.getVSync());
+			appgc.setVSync(properties.VSync);
 			// If vsync is disabled, can specify target framerate instead
 //			appgc.setTargetFrameRate(properties.getFPSLimit());
 			// Set the icons used for the application
 			appgc.setIcons(new String[] {"res/icons/Icon-16x16.png","res/icons/Icon-24x24.png","res/icons/Icon-32x32.png"});
 			
 			//Disable FPS Counter
-			appgc.setShowFPS(false);
+			appgc.setShowFPS(true);
 			appgc.start();
 		} catch(SlickException e) {
 			e.printStackTrace();

@@ -16,6 +16,7 @@ public class Play extends BasicGameState {
 	private static int SceneY = 48;
 	private static int SceneWidth = 248;
 	private static int SceneHeight = 383;
+	private int StateID;
 	
 	private Image Background;
 	private Color BackgroundColor;
@@ -32,7 +33,7 @@ public class Play extends BasicGameState {
 	private boolean AllowESC = true;
 	
 	public Play(int state) {
-		
+		StateID = state;
 	}
 	
 	/**
@@ -198,6 +199,6 @@ public class Play extends BasicGameState {
 	}
 	
 	public int getID() {
-		return 1;
+		return StateID;
 	}
 }
