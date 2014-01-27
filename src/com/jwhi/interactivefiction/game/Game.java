@@ -46,7 +46,7 @@ public class Game extends StateBasedGame {
 		try {
 			appgc = new AppGameContainer(new Game(gamename));
 			// Create a display using the properties created earlier
-			appgc.setDisplayMode(properties.ScreenResWidth, properties.ScreenResHeight, properties.Fullscreen);
+			appgc.setDisplayMode(Properties.ScreenResWidth, Properties.ScreenResHeight, properties.Fullscreen);
 			// Decides whether or not that vsync is enabled based on the games properties
 			appgc.setVSync(properties.VSync);
 			// If vsync is disabled, can specify target framerate instead
@@ -55,7 +55,7 @@ public class Game extends StateBasedGame {
 			appgc.setIcons(new String[] {"res/icons/Icon-16x16.png","res/icons/Icon-24x24.png","res/icons/Icon-32x32.png"});
 			
 			//Disable FPS Counter
-			appgc.setShowFPS(true);
+			appgc.setShowFPS(false);
 			appgc.start();
 		} catch(SlickException e) {
 			e.printStackTrace();

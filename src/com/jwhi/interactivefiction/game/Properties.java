@@ -6,7 +6,7 @@ public class Properties {
 	protected boolean Fullscreen = false;
 	protected boolean VSync = true;
 	protected int FPSLimit = 60;
-	protected float ResolutionScale = (float) ScreenResWidth / 1280;
+	protected static float ResolutionScale = (float) ScreenResWidth / Constants.MaxResourceWidth;
 	protected static int FontSize = Constants.DefaultFontSize;
 	protected static int BackgroundTransparency = Constants.DefaultBackgroundTransparency;
 	

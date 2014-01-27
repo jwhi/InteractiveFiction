@@ -99,20 +99,19 @@ public class IsometricView extends BaseView {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		float ResolutionScale = gc.getWidth() / Constants.MaxResourceWidth;
 		for (int i = 0; i < tile_map.length; i++) {
 			for (int j = tile_map[i].length-1; j >= 0; j--) {
-				int x = (int)(((j * tile_width / 2) + (i * tile_width / 2)) * ResolutionScale);
-				int y = (int)(((i * tile_height / 2) - (j * tile_height / 2) + 360) * ResolutionScale);
-				getSpriteImage(tile_map[i][j]).draw(x, y, ResolutionScale);
+				int x = (int)(((j * tile_width / 2) + (i * tile_width / 2)) * Properties.ResolutionScale);
+				int y = (int)(((i * tile_height / 2) - (j * tile_height / 2) + 360) * Properties.ResolutionScale);
+				getSpriteImage(tile_map[i][j]).draw(x, y, Properties.ResolutionScale);
 			}
 		}
 		
 		for (int i = 0; i < object_map.length; i++) {
 			for (int j = object_map[i].length-1; j >= 0; j--) {
-				int x = (int)(((j * tile_width / 2) + (i * tile_width / 2)) * ResolutionScale);
-				int y = (int)(((i * tile_height / 2) - (j * tile_height / 2) + 360) * ResolutionScale);
-				getSpriteImage(object_map[i][j]).draw(x, y, ResolutionScale);
+				int x = (int)(((j * tile_width / 2) + (i * tile_width / 2)) * Properties.ResolutionScale);
+				int y = (int)(((i * tile_height / 2) - (j * tile_height / 2) + 360) * Properties.ResolutionScale);
+				getSpriteImage(object_map[i][j]).draw(x, y, Properties.ResolutionScale);
 			}
 		}
 		
@@ -123,7 +122,7 @@ public class IsometricView extends BaseView {
 		}
 		if (!HideOverlay) {
 			g.setColor(backgroundColor);
-			g.fillRect(0, 0, 1280*ResolutionScale, 720*ResolutionScale);
+			g.fillRect(0, 0, 1280*Properties.ResolutionScale, 720*Properties.ResolutionScale);
 			textHandle.drawStrings(sceneDescription);
 		}
 	}
