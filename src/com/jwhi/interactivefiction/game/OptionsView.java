@@ -105,21 +105,6 @@ public class OptionsView extends BaseView {
 			case (Input.KEY_ESCAPE):
 				sbg.enterState(PreviousState);
 				break;
-			case (Input.KEY_UP):
-				Properties.BackgroundTransparency += 10;
-				break;
-			case (Input.KEY_DOWN):
-				Properties.BackgroundTransparency -= 10;
-				break;
-			case (Input.KEY_LEFT):
-				Properties.BackgroundTransparency -= 5;
-				break;
-			case (Input.KEY_RIGHT):
-				Properties.BackgroundTransparency += 5;
-				break;
-			case (Input.KEY_SPACE):
-				System.out.println(Properties.BackgroundTransparency);
-				break;
 			}
 		}
 		clearInput();
@@ -127,42 +112,75 @@ public class OptionsView extends BaseView {
 		int yLoc = StartY + OptionsFont.getLineHeight() + (SpaceBetweenLines*2);
 		
 		if (allowClick && Mouse.isButtonDown(0)) {
+			
+			int xLoc = StartX + OptionsFont.getWidth("Font Size: ");
+			
 			if (((gc.getHeight() - Mouse.getY()) > yLoc) &&
 					((gc.getHeight() - Mouse.getY()) < (yLoc + OptionsFont.getLineHeight()))) {
-				if (Mouse.getX() > 120 && Mouse.getX() < 130) {
+				if (Mouse.getX() > xLoc && Mouse.getX() < xLoc + OptionsFont.getWidth("<")) {
 					if (Properties.FontSize > 11) {
 						Properties.FontSize -= 2;
 						Font awtFont = new java.awt.Font(Constants.DefaultFont, java.awt.Font.PLAIN, Properties.FontSize);
 						TestFont = new TrueTypeFont((java.awt.Font) awtFont, false);
 					}
-				} else if (Mouse.getX() > 280 && Mouse.getX() < 290) {
+				}
+				
+				xLoc += OptionsFont.getWidth("<-X-------------");
+				if (Mouse.getX() > xLoc && Mouse.getX() < xLoc + OptionsFont.getWidth(">")) {
 					if (Properties.FontSize < 39) {
 						Properties.FontSize += 2;
 						Font awtFont = new java.awt.Font(Constants.DefaultFont, java.awt.Font.PLAIN, Properties.FontSize);
 						TestFont = new TrueTypeFont((java.awt.Font) awtFont, false);
 					}
-				} else if (Mouse.getX() > 300 && Mouse.getX() < (300 + OptionsFont.getWidth("Default"))) {
+				}
+				
+				xLoc += OptionsFont.getWidth("> ");
+				if (Mouse.getX() > xLoc && Mouse.getX() < (xLoc + OptionsFont.getWidth("Default"))) {
 					Properties.FontSize = Constants.DefaultFontSize;
 					Font awtFont = new java.awt.Font(Constants.DefaultFont, java.awt.Font.PLAIN, Properties.FontSize);
 					TestFont = new TrueTypeFont((java.awt.Font) awtFont, false);
-				} else if (Mouse.getX() > 260 && Mouse.getX() < 270) {
+				}
+			}
+			xLoc = StartX + OptionsFont.getWidth("Background Transparency: ");
+			yLoc += OptionsFont.getLineHeight() + SpaceBetweenLines;
+			if (((gc.getHeight() - Mouse.getY()) > yLoc) &&
+					((gc.getHeight() - Mouse.getY()) < (yLoc + OptionsFont.getLineHeight()))) {
+				if (Mouse.getX() > xLoc && Mouse.getX() < xLoc + OptionsFont.getWidth("<")) {
 					if (Properties.BackgroundTransparency > 5) {
 						Properties.BackgroundTransparency -= 10;
 					}
 				}
-			}
-			
-			yLoc += OptionsFont.getLineHeight() + SpaceBetweenLines;
-			if (((gc.getHeight() - Mouse.getY()) > yLoc) &&
-					((gc.getHeight() - Mouse.getY()) < (yLoc + OptionsFont.getLineHeight()))) {
-				if (Mouse.getX() > 530 && Mouse.getX() < 540) {
+				
+				xLoc += OptionsFont.getWidth("<------X-------------------");
+				if (Mouse.getX() > xLoc && Mouse.getX() < xLoc + OptionsFont.getWidth(">")) {
 					if (Properties.BackgroundTransparency < 255) {
 						Properties.BackgroundTransparency += 10;
 					}
-				} else if (Mouse.getX() > 550 && Mouse.getX() < (550 + OptionsFont.getWidth("Default"))) {
+				}
+				
+				xLoc += OptionsFont.getWidth("> ");
+				if (Mouse.getX() > xLoc && Mouse.getX() < (xLoc + OptionsFont.getWidth("Default"))) {
 					Properties.BackgroundTransparency = Constants.DefaultBackgroundTransparency;
 				}
 			}
+			
+			xLoc = StartX;
+			yLoc += OptionsFont.getLineHeight() + (SpaceBetweenLines*2);
+			if (((gc.getHeight() - Mouse.getY()) > yLoc) &&
+					((gc.getHeight() - Mouse.getY()) < (yLoc + OptionsFont.getLineHeight()))) {
+				if (Mouse.getX() > xLoc && Mouse.getX() < xLoc + OptionsFont.getWidth("Return")) {
+					sbg.enterState(PreviousState);
+				}
+			}
+		
+			yLoc += OptionsFont.getLineHeight() + (SpaceBetweenLines*2);
+			if (((gc.getHeight() - Mouse.getY()) > yLoc) &&
+					((gc.getHeight() - Mouse.getY()) < (yLoc + OptionsFont.getLineHeight()))) {
+				if (Mouse.getX() > xLoc && Mouse.getX() < xLoc + OptionsFont.getWidth("Exit Game")) {
+					gc.exit();
+				}
+			}
+			
 			allowClick = false;
 		}
 		

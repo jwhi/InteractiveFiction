@@ -93,6 +93,7 @@ public class IsometricView extends BaseView {
 		AllowClick = false;
 		textHandle.updateFontSize();
 		super.enter(gc, sbg);
+		backgroundColor = new Color(0,0,0,Properties.BackgroundTransparency);
 	}
 
 	@Override

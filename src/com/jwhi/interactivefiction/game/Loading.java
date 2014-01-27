@@ -28,7 +28,7 @@ public class Loading extends BasicGameState {
 	// Draws the loading screen
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 //		g.drawImage(loadingImage, 0, 0);
-		loadingImage.draw(0, 0, gc.getWidth()/Constants.MaxResourceWidth);
+		loadingImage.draw(0, 0, (float)gc.getWidth()/(float)Constants.MaxResourceWidth);
 		
 	}
 

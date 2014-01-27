@@ -11,7 +11,7 @@ public class Properties {
 	protected static int BackgroundTransparency = Constants.DefaultBackgroundTransparency;
 	
 	public Properties() {
-		ResolutionScale = (float) ScreenResWidth / 1280;
+		ResolutionScale = (float) ScreenResWidth / (float)1280;
 	}
 	
 	public Properties(int ScreenWidth, int ScreenHeight, boolean fullscreen, boolean vsync) {
@@ -20,7 +20,7 @@ public class Properties {
 		Fullscreen = fullscreen;
 		VSync = vsync;
 		FPSLimit = 60;
-		ResolutionScale = (float) ScreenResWidth / 1280;
+		ResolutionScale = (float) ScreenResWidth / (float)1280;
 	}
 	
 	public void setScreenResWidth(int width) {
